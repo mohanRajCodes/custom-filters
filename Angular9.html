@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html ng-app="MyModule">
+<head>
+<meta charset="ISO-8859-1">
+<title>Angular9 - Custom filters</title>
+<script src="C:\Users\577525\eclipse-workspace\AngularLesson9-CustomFilter\src\Scripts\angular.js"></script>
+<script src="C:\Users\577525\eclipse-workspace\AngularLesson9-CustomFilter\src\Scripts\Angular9.js"></script>
+<script src="C:\Users\577525\eclipse-workspace\AngularLesson9-CustomFilter\src\Scripts\Controller.js"> </script>
+<script src="C:\Users\577525\eclipse-workspace\AngularLesson9-CustomFilter\src\Scripts\Filter.js"> </script>
+<link href="C:\Users\577525\eclipse-workspace\AngularLesson9-CustomFilter\src\Scripts\Angular9.css" rel="stylesheet"/>
+</head>
+<body ng-controller="MyController">
+Search Name : <input type="Text" placeholder="Search name" ng-model="searchText.name"/>
+<br/><br/>
+Search Bat : <input type="Text" placeholder="Search bat" ng-model="searchText.bat"/>
+
+<input type="Checkbox" ng-model="exactMatch"/> Exact Match
+
+<br/></br>
+Custom search : <input type="Text" placeholder="Search name & bat" ng-model="customSearch"/>
+<br/><br/>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Bat</th>
+<th>Bowl</th>
+<th>Slot</th>
+</tr>
+
+<tdata>
+<tr ng-repeat="crick in info| filter:searchText:exactMatch">
+<td>{{ crick.name}}</td>
+<td>{{ crick.bat }}</td>
+<td>{{ crick.bowl }}</td>
+<td>{{ crick.Slot }}</td>
+</tr>
+</tdata>
+</thead>
+</table>
+<br/>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Bat</th>
+<th>Bowl</th>
+<th>Slot</th>
+</tr>
+<p> Custom Search </p>
+<br/> 
+<tdata>
+<tr ng-repeat="crick in info| filter:search">
+<td>{{ crick.name}}</td>
+<td>{{ crick.bat }}</td>
+<td>{{ crick.bowl }}</td>
+<td>{{ crick.Slot }}</td>
+</tr>
+</tdata>
+</thead>
+</table>
+<br/></br>
+
+<p> Custom Filter: <input type="Checkbox" ng-model="hideGender"/> Hide Gender
+<input type="Checkbox" ng-model="hideGender"/> Mask Gender 
+<input type="Checkbox" ng-model="hidGender"/> Show Gender
+</p>
+
+<table ng-controller="MyCustomController" ng-model="hideGender">
+<thead>
+<tr>
+<th>Name</th>
+<th>Bat</th>
+<th>Bowl</th>
+<th ng-hide="hideGender">gender</th>
+<th ng-show="hideGender">gender</th>
+<th ng-show="hidGender">gender</th>
+</tr>
+
+<tdata>
+<tr ng-repeat="crick in info">
+<td>{{ crick.name}}</td>
+<td>{{ crick.bat }}</td>
+<td>{{ crick.bowl }}</td>
+<td ng-hide="hideGender">{{ crick.gender | gender }}</td>
+<td ng-show="hideGender">#####</td>
+<td ng-show="hidGender">{{ crick.gender | gender }}</td>
+</tr>
+</tdata>
+</thead>
+</table>
+</body>
+</html>
